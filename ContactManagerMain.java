@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ContactManagerMain{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //instantiates ContactManagerMethods for the utility functions
         ContactManagerMethods utilities = new ContactManagerMethods();
         //scanner for user input
@@ -20,7 +20,7 @@ public class ContactManagerMain{
             System.out.println("2. Add a New Contact");
             System.out.println("3. Search a Contact By Name");
             System.out.println("4. Delete an Existing Contact");
-            System.out.println("Exit");
+            System.out.println("5. Exit");
             System.out.println("Enter an option 1, 2, 3, 4, 5");
 
             userInput = sc1.nextInt();
@@ -39,7 +39,10 @@ public class ContactManagerMain{
                 System.out.println("Search contacts");
                 utilities.searchContact();
             }
-            else if (userInput == 4) System.out.println(4);
+            else if (userInput == 4) utilities.deleteContact();
+
+            else if (userInput == 5) System.out.println("Goodbye!");
+
             else System.out.println("Invalid Input");
         }
         while (userInput != 5);
