@@ -13,6 +13,7 @@ public class ContactManagerMethods {
     public Path contactsPath = Paths.get("data", "Contacts.txt");
     List<String> contactsData = null;
 
+
     protected void displayContacts(){
         try {
             if (Files.notExists(contactsPath)) Files.createDirectories(contactsPath);
@@ -38,22 +39,18 @@ public class ContactManagerMethods {
     }
 
     protected List<String> addContact(String newContact){
+        try {
+            if (Files.notExists(contactsPath)) Files.createDirectories(contactsPath);
+            contactsData = Files.readAllLines(contactsPath);
+        } catch(IOException e){
+            System.out.println("File or Directory could not be created.");
+            e.printStackTrace();
+        }
+
         contactsData.add(newContact);
         writeFile();
         return contactsData;
     }
-
-//    public List<String> addLine(String string) {
-//        fileData.add(string);
-//        writeFile();
-//        return fileData;
-//    }
-
-//    Files.write(
-//            Paths.get("data", "groceries.txt"),
-//            Arrays.asList("eggs"), // list with one item
-//    StandardOpenOption.APPEND
-//      );
 
     public void searchContact() {
         Scanner sc3 = new Scanner(System.in);
@@ -69,6 +66,17 @@ public class ContactManagerMethods {
                 System.out.println(Line);
             }
         }
+    }
+
+    public void deleteContact() throws IOException {
+        contactsData = Files.readAllLines(contactsPath);
+
+        Scanner sc = new Scanner(System.in);
+        String deletePerson = sc.next();
+
+        contactsData.removeIf(contactsData -> contactsData.toLowerCase().contains(deletePerson.toLowerCase()));
+
+        Files.write(contactsPath, contactsData);
     }
 
 }
