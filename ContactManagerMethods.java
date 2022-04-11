@@ -22,4 +22,8 @@ public class ContactManagerMethods {
             System.out.println(line);
         }
     }
+
+    protected void addContact(String newContact){
+        contactsData.add(newContact);
+    }
 }
