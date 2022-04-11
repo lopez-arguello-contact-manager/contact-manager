@@ -1,8 +1,12 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 
 public class ContactManagerMethods {
@@ -50,4 +54,21 @@ public class ContactManagerMethods {
 //            Arrays.asList("eggs"), // list with one item
 //    StandardOpenOption.APPEND
 //      );
+
+    public void searchContact() {
+        Scanner sc3 = new Scanner(System.in);
+        String searchContact = sc3.nextLine();
+        List<String> displayedContact = null;
+        try {
+            displayedContact = Files.readAllLines(contactsPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (String Line : displayedContact) {
+            if (Line.toLowerCase().contains(searchContact)) {
+                System.out.println(Line);
+            }
+        }
+    }
+
 }

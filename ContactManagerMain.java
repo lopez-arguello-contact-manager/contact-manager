@@ -35,7 +35,10 @@ public class ContactManagerMain{
             }
 
 
-            else if (userInput == 3) System.out.println(3);
+            else if (userInput == 3) {
+                System.out.println("Search contacts");
+                utilities.searchContact();
+            }
             else if (userInput == 4) System.out.println(4);
             else System.out.println("Invalid Input");
         }
