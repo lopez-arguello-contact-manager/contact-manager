@@ -11,10 +11,9 @@ import java.util.Scanner;
 
 public class ContactManagerMethods {
     public Path contactsPath = Paths.get("data", "Contacts.txt");
-    List<String> contactsData = null;
+    List<String> contactsData = addToList();
 
-
-    protected void displayContacts(){
+    protected List<String> addToList(){
         try {
             if (Files.notExists(contactsPath)) Files.createDirectories(contactsPath);
             contactsData = Files.readAllLines(contactsPath);
@@ -22,6 +21,10 @@ public class ContactManagerMethods {
             System.out.println("File or Directory could not be created.");
             e.printStackTrace();
         }
+        return contactsData;
+    }
+
+    protected void displayContacts(){
         for (String line : contactsData) {
             System.out.println(line);
         }
@@ -39,14 +42,6 @@ public class ContactManagerMethods {
     }
 
     protected List<String> addContact(String newContact){
-        try {
-            if (Files.notExists(contactsPath)) Files.createDirectories(contactsPath);
-            contactsData = Files.readAllLines(contactsPath);
-        } catch(IOException e){
-            System.out.println("File or Directory could not be created.");
-            e.printStackTrace();
-        }
-
         contactsData.add(newContact);
         writeFile();
         return contactsData;
