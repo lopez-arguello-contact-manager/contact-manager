@@ -57,7 +57,7 @@ public class ContactManagerMethods {
             e.printStackTrace();
         }
         for (String Line : displayedContact) {
-            if (Line.toLowerCase().contains(searchContact)) {
+            if (Line.toLowerCase().contains(searchContact.toLowerCase())) {
                 System.out.println(Line);
             }
         }
